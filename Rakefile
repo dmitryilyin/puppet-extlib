@@ -47,9 +47,16 @@ RSpec::Core::RakeTask.new(:acceptance) do |t|
   t.pattern = 'spec/acceptance'
 end
 
+desc "Verify that there are no duplicate functions in stdlib/extlib"
+task :no_duplicate do
+  sh "spec/no_duplicate.sh"
+end
+
 desc "Run syntax, lint, and spec tests."
 task :test => [
   :syntax,
   :lint,
   :spec,
+  :no_duplicate,
 ]
+
